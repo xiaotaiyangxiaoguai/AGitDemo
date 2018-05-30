@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input id="first-number" type="text" value="0" placeholder="第一个数字">
+    <input id="second-number" type="text" value="0" placeholder="第二个数字">
+    <button id="add-btn">加</button>
+    <button id="minus-btn">减</button>
+    <button id="times-btn">乘</button>
+    <button id="divide-btn">除</button>
+    <p id="result">运算结果</p>
+    <script>
+       //加法按钮
+         document.getElementById("add-btn").onclick = function() {
+            var a=parseFloat(document.getElementById('first-number').value);
+            var b=parseFloat(document.getElementById('second-number').value);
+            //通过isNaN()方法来判断用户输入的两个数字是否是数字型，若不是，就在控制台中出现错误提示。
+            if(isNaN(a)||isNaN(b)){
+                console.log("请输入数字");
+            }else{
+                var c=(a+b).toFixed(2);
+                //虽然为了更精确的计算使用了parseFloat来处理数据，但是当用户输入小数时会带来新的问题，比如当用户输入2.32和1.3432来做减法的时候，计算得到的结果是0.9767999999999999，所以使用toFixed(2)方法来把结算结果都精确到小数点后两位数，这个方法自动的四舍五入了结果。
+                document.getElementById("result").innerHTML =c;
+            }
+        }
+        //减法按钮
+        document.getElementById("minus-btn").onclick = function() {
+            var a=parseFloat(document.getElementById('first-number').value);
+            var b=parseFloat(document.getElementById('second-number').value);
+            if(isNaN(a)||isNaN(b)){
+                console.log("请输入数字");
+            }else{
+                var c=(a-b).toFixed(2);
+                document.getElementById("result").innerHTML = c;
+            }
+        }
+        //乘法按钮
+        document.getElementById("times-btn").onclick = function() {
+            var a=parseFloat(document.getElementById('first-number').value);
+            var b=parseFloat(document.getElementById('second-number').value);
+            if(isNaN(a)||isNaN(b)){
+                console.log("请输入数字");
+            }else{
+                var c=(a*b).toFixed(2);
+                document.getElementById("result").innerHTML = c;
+            }
+        }
+        //除法按钮
+        document.getElementById("divide-btn").onclick = function() {
+            var a=parseFloat(document.getElementById('first-number').value);
+            var b=parseFloat(document.getElementById('second-number').value);
+            if(b==0){
+                document.write("除数不能为0");
+            }
+            else if(isNaN(a)||isNaN(b)){
+                console.log("请输入数字");
+            }else{
+                var c=(a/b).toFixed(2);
+                document.getElementById("result").innerHTML = c;
+            }
+        }
+    </script>
+</body>
+</html>

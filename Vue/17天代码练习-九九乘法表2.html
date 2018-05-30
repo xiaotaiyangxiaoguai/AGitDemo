@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	//以三角形的形式输出九九乘法表，在按行输出的基础上，在两层for循环的里面加判断语句，当判断到m和n值一样的时候，就输出换行符
+     for(var m=1;m<10;m++){
+     	for(var n=1;n<=m;n++){
+     		document.write(m+'*'+n+'='+m*n+'&nbsp;&nbsp;&nbsp;');
+     		if(m==n){
+              document.write('<br />');
+     		}
+     	}
+     }
+	</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>加减乘除</title>
+</head>
+<body>
+    <input id="first-number" type="number" value="0" placeholder="第一个数字">
+    <input id="second-number" type="number" value="0" placeholder="第二个数字">
+    <!-- placeholder占位符：可描述输入字段预期值的简短的提示信息（比如：一个样本值或者预期格式的短描述）。该提示会在用户输入值之前显示在输入字段中。该提示会在输入字段为空时显示，并会在字段获得焦点时消失。 -->
+    <button id="add-btn">加</button>
+    <button id="minus-btn">减</button>
+    <button id="times-btn">乘</button>
+    <button id="divide-btn">除</button>
+    <p id="result">运算结果</p>
+    <script>
+         //加法按钮
+         document.getElementById("add-btn").onclick = function() {
+            var a=parseFloat(document.getElementById('first-number').value);
+            var b=parseFloat(document.getElementById('second-number').value);
+            document.getElementById("result").innerHTML = a+b;
+        }
+        //减法按钮
+        document.getElementById("minus-btn").onclick = function() {
+            var a=parseFloat(document.getElementById('first-number').value);
+            var b=parseFloat(document.getElementById('second-number').value);
+            document.getElementById("result").innerHTML = a-b;
+        }
+        //乘法按钮
+        document.getElementById("times-btn").onclick = function() {
+            var a=parseFloat(document.getElementById('first-number').value);
+            var b=parseFloat(document.getElementById('second-number').value);
+            document.getElementById("result").innerHTML = a*b;
+        }
+        //除法按钮
+        document.getElementById("divide-btn").onclick = function() {
+            var a=parseFloat(document.getElementById('first-number').value);
+            var b=parseFloat(document.getElementById('second-number').value);
+            document.getElementById("result").innerHTML = a/b;
+        }
+        // parseFloat和parseInt是js的内置函数，可解析一个字符串，并返回一个整数。
+        // 一开始没有用parseInt对a和b进行转换的时候，结果显示的是00，因为获取到的是字符串，显示的就是字符串，通过parseInt进行强制转换了之后，就可以正常的进行数据的加减乘除了，同时，为了更严谨，使用的是parseFloat函数
+    </script>
+</body>
+</html>

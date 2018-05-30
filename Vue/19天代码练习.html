@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="wrapper">
+        <div id="news-top" class="section">
+            <h3>Some title</h3>
+            <div class="content">
+                <ul>
+                    <li><span>HTML</span><a href="">Some Link1</a></li>
+                    <li><span>JS</span><a class="active" href="">Some Link2</a></li>
+                    <li><span>CSS</span><a href="">Some Link3</a></li>
+                    <li><span>JS</span><a href="">Some Link4</a></li>
+                </ul>
+            </div>
+            <img src="">
+            <p class="">Some Text</p>
+        </div>
+        <div id="news-normal" class="section">
+            <h3>Some title</h3>
+            <div class="content">
+                <ul>
+                    <li><span>HTML</span><a href="">Some Link1</a></li>
+                    <li><span>HTML</span><a href="">Some Link2</a></li>
+                    <li><span>JS</span><a class="active" href="#">Some Link3</a></li>
+                    <li><span>CSS</span><a href="">Some Link4</a></li>
+                </ul>
+            </div>
+            <img src="">
+            <p class="">Some Text</p>
+        </div>      
+    </div>
+    <script>
+
+    function getAllListItem1() {
+    	var arr=document.getElementsByTagName("li");
+    	for(var i=0;i<arr.length;i++){
+            console.log(arr[i]);
+    	}
+    	console.log("问题一");
+       // 返回页面中所有li标签
+    }
+     getAllListItem1();
+
+    function findAllHtmlSpanInOneSection1(sectionId) {
+        // 返回某个section下所有span中内容为HTML的span标签
+        var oDiv=document.getElementById(sectionId);
+        var aSpan=oDiv.getElementsByTagName("span");
+        for(var i=0;i<aSpan.length;i++){
+        	if(aSpan[i].innerHTML=="HTML"){
+                console.log(aSpan[i]);
+        	}
+        }
+        console.log("问题二");
+    }
+    findAllHtmlSpanInOneSection1("news-normal");
+
+    function getActiveLinkContent(sectionId) {
+        // 返回某个section下，class为active的链接中包含的文字内容
+        // (开始)这是通过getElementsByClassName来实现的
+        // var oDiv=document.getElementById(sectionId);
+        // var aClass=oDiv.getElementsByClassName("active");
+        // for(var i=0;i<aClass.length;i++){
+        //         console.log(aClass[i].innerHTML);
+        // }
+        //(结束)这种方法是通过getElementsByClassName来实现的
+        //(开始)这是通过childNodes方法来实现的
+           var oDiv=document.getElementById(sectionId);
+           var aUl=oDiv.getElementsByTagName("ul");
+           var  b  =aUl[0].childNodes;
+           // console.log(b);这里出来的答案是#text li #text li #text li #text li #text 长度为9 不止获取到了li 还获取到了文本 而我们只需要li标签
+           for(var i=0;i<b.length;i++){
+               //通过nodeType来判断是文本还是li标签，nodeType==1表示是元素，nodeType==2表示属性，nodeType==3表示文本
+               if(b[i].nodeType==1){
+                   // console.log(b[i]);
+                   var a=b[i].getElementsByTagName("a");
+                   if(a[0].className=="active"){
+                       console.log(a[0].innerHTML);
+                   }         
+               }
+           }
+           console.log("问题四");
+        //(结束)这是通过childNodes方法来实现的
+    }
+    getActiveLinkContent("news-normal");
+    
+    //以下为使用querySelector及querySelectorAll重新完成上面的函数
+    function getAllListItem() {
+        // 返回页面中所有li标签
+       var list = document.querySelectorAll('li');
+       console.log(list);
+       console.log("这又是问题一");
+    }
+    getAllListItem();
+
+    function findAllHtmlSpanInOneSection(sectionId) {
+        // 返回某个section下所有span中内容为HTML的span标签
+        var section = document.querySelector('#'+sectionId).querySelectorAll('span');
+        for(var i =0;i<section.length;i++){
+        	if(section[i].innerHTML=='HTML'){
+                console.log(section[i]);
+        	}
+        }
+        console.log("这又是问题二");
+    }
+    findAllHtmlSpanInOneSection("news-top");
+
+     function getActiveLinkContent(sectionId) {
+        // 返回某个section下，class为active的链接中包含的文字内容
+        var section = document.querySelector('#'+sectionId).querySelectorAll('.active');
+        for (var i =0;i<section.length;i++){
+            console.log(section[i].innerHTML);
+        }
+        console.log("这又是问题四");
+    }
+    getActiveLinkContent("news-normal");
+    </script>
+</body>
+</html>

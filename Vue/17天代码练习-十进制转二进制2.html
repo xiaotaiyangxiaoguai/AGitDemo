@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input id="dec-number" type="number" placeholder="输入一个十进制非负整数">
+    <input id="bin-bit" type="number" placeholder="输入转化后二进制数字位数">
+    <button id="trans-btn">转化为二进制</button>
+    <p id="result">运算结果</p>
+
+    <script>
+    document.getElementById("trans-btn").onclick=function dec2bin(decNumber) {
+    // 在这里实现你的转化方法，注意需要判断输入必须为一个非负整数
+        var a=Number(document.getElementById("dec-number").value);
+        var c=Number(document.getElementById("bin-bit").value);
+        if(a<0){
+        	document.write("请输入一个非负整数");
+        }
+        else{  	
+        	//通过b.length来获取转换后的二进制的数的位数，和自己输入的数字去比较。
+        	var b=a.toString(2);
+        	var d,i;
+            var e='0';//给e的初值为0，所以后面的循环要减1
+        	// document.getElementById("result").innerHTML=b;
+        	// console.log(b.length); 	
+        	d=c-b.length;
+        	if(d>0){
+        		//通过循环来控制要补的0的个数
+                for(i=0;i<d-1;i++)
+                {
+                    e=e+'0';
+                }
+                document.getElementById("result").innerHTML=(e+b);
+                //把补上的0和转换的二进制一起输出
+        	}else{
+                document.getElementById("result").innerHTML=b;
+                console.log("出错啦!!");
+        	} 
+        }
+    }
+     
+    </script>
+</body>
+</html>

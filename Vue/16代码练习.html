@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+   <h1>Demo1</h1>
+    <p id="content-wrapper1">Hello World</p>
+
+
+    <h1>Demo2</h1>
+    <p id="content-wrapper2">你是谁？</p>
+    <input id="name-input" type="text" placeholder="输入你的名字">
+    <button id="send-btn">发送</button>
+    <script>
+        console.log(document.getElementById("content-wrapper1").innerHTML);
+        //console.log经常用于在Chrome中的Console中输出一个内容，写 JavaScript 代码中最常用的调试手段之一
+        
+      
+        document.getElementById("send-btn").onclick = function() {
+            document.getElementById("content-wrapper2").innerHTML = 'Hello ' + document.getElementById("name-input").value;
+         //没有直接在send-btn的这个按钮加属性onclick，而是在js里面通过document来写onclick，可以实现js和html的分离。
+        }
+    </script>
+</body>
+</html>
