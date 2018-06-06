@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input id="name" type="text">    
+    <button id="submit-btn">Submit</button>
+    <script>
+        //当点击按钮 submit-btn 时，在console中输出 name 中的内容
+        var btn=document.getElementById('submit-btn');
+        btn.onclick=function(){
+        	var a=document.getElementById("name");
+        	console.log(a.value);
+        }
+
+        //在输入过程中，如果按回车键，则同样执行上一条的需求
+                //在输入过程中，如果按回车键，则同样执行上一条的需求
+        document.onkeydown = function (e) {
+        var ev = document.all ? window.event : e;
+        //这个是用来区别ie 和其他浏览器的一个判断
+        //在ie中，事件传播的时候，生成的事件对象会绑定到全局的window上
+        //而在其他浏览器中，事件对象将会是一个局部变量，传到方法中
+        if (ev.keyCode == 13) {//这里13指的回车键
+         var a=document.getElementById("name");
+            console.log(a.value);
+            }
+        else if(ev.keyCode == 27) {
+            var a=document.getElementById("name");
+         // console.log("27");
+            a.value="";
+        }   
+        }
+
+
+        //在输入过程中，如果按 ESC 键，则把输入框中的内容清空
+        // document.onkeydown = function (e) {
+        // var ev1 = document.all ? window.event : e;
+        // //这个是用来区别ie 和其他浏览器的一个判断
+        // //在ie中，事件传播的时候，生成的事件对象会绑定到全局的window上
+        // //而在其他浏览器中，事件对象将会是一个局部变量，传到方法中
+        // if (ev1.keyCode == 27) {//这里27指的Esc键
+        // 	var a=document.getElementById("name");
+        // 	// console.log("27");
+        //     a.value="";
+        //     }
+        // }
+    </script>
+</body>
+</html>

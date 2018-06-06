@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	 <style>
+        select {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+	<label>
+        <input id="school" name="status" type="radio">
+        School
+    </label>
+    <label>
+        <input id="company" name="status" type="radio">
+        Company
+    </label>
+
+    <select id="school-select">        
+        <option>北京邮电大学</option>
+        <option>黑龙江大学</option>
+        <option>华中科技大学</option>
+    </select>
+
+    <select id="company-select">        
+        <option>百度</option>
+        <option>爱奇艺</option>        
+    </select>
+    <script>
+    var a=document.getElementById("school");  
+    var b=document.getElementById("company"); 
+    var c=document.getElementById("school-select");
+    var d=document.getElementById("company-select");
+    // if(a.checked){
+    //     c.style.display="block";
+    //     d.style.display="none";
+    // }
+    // else if(b.checked){
+    //     c.style.display="none";
+    //     d.style.display="block";
+    // }
+    // 这种方法实现不了，checked不能表示单选框被选中
+    // onchange 事件会在域的内容改变时发生。onchange 事件也可用于单选框与复选框改变后触发的事件。
+    a.onchange=function(){
+    	c.style.display="block";
+        d.style.display="none";
+    }
+    b.onchange=function(){
+    	c.style.display="none";
+        d.style.display="block";
+    }
+    </script>
+</body>
+</html>

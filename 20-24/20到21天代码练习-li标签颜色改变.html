@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+        .palette {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .palette li {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #000;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+	<ul class="palette">
+        <li style="background-color:crimson"></li>
+        <li style="background-color:bisque"></li>
+        <li style="background-color:blueviolet"></li>
+        <li style="background-color:coral"></li>
+        <li style="background-color:chartreuse"></li>
+        <li style="background-color:darkolivegreen"></li>
+        <li style="background-color:cyan"></li>
+        <li style="background-color:#194738"></li>        
+    </ul>
+
+    <p class="color-picker"></p>
+
+    <script> 
+       var list = document.querySelectorAll("li");        
+       //获取所有li标签   
+       var ul = document.querySelector(".palette"); 
+       //querySelector选择类名的时候需要在前面加一个点
+       //点击任何一个 li ，该点击事件依然会冒泡到父元素 ul 上，所以直接将点击 li 后要做的事写到了父元素的点击事件里；
+       ul.addEventListener('click', function (e) {       
+       // li标签事件委托给ul（冒泡机制）
+       var e = e ||window.event; //event兼容
+       var t = e.target;    //点击的目标元素
+       var c = t.style.backgroundColor; //点击的目标元素的背景颜色
+       var p = document.querySelector('.color-picker');  //获取p标签
+       var fontColor = p.style.color;     //获取p标签字体颜色
+       p.innerHTML = c;         //设置p标签内容
+       p.style.backgroundColor = c; 
+       //设置p标签背景颜色为点击li元素的背景颜色
+       t.style.backgroundColor = fontColor;
+       //设置点击元素的背景颜色为p字体颜色
+    })
+    </script>
+</body>
+</html>

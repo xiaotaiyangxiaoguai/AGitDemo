@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div>
+      <label>Number A:<input id="radio-a" type="radio" name="math-obj" value="a"></label><input id="num-a" type="text">
+      <label>Number B:<input id="radio-b" type="radio" name="math-obj" value="b"></label><input id="num-b" type="text">
+    </div>
+    <div>
+      <button id="aa">判断当前选中的输入框输入内容是否为数字</button>
+      <button id="bb">把 A 四舍五入为 B 个小数位数的数字</button>
+      <button id="cc">当前选中数字的绝对值</button>
+      <button id="dd">对当前选中的数字进行上舍入</button>
+      <button id="ee">对当前选中的数字进行下舍入</button>
+      <button id="ff">把当前选中的数字四舍五入为最接近的整数</button>
+      <button id="gg">返回 A 和 B 中的最高值</button>
+      <button id="hh">返回 A 和 B 中的最低值</button>        
+    </div>
+    <p id="result"></p>
+    <script>
+       document.getElementById('aa').onclick=function sz1() {
+       	   var a=document.getElementById('num-a').value;
+       	   var b=document.getElementById('num-b').value;
+       	   if(isNaN(a)||isNaN(b)){
+                console.log("请输入数字");
+       	   }
+       }
+       document.getElementById('bb').onclick=function sz2() {
+       	   var a=document.getElementById('num-a').value;
+       	   var b=document.getElementById('num-b').value;
+           var c=document.getElementById('result');
+           if(isNaN(a)||isNaN(b)){
+                console.log("请输入数字");
+       	   }else{
+       	   	    c.innerHTML=Number(a).toFixed(Number(b));
+       	   }
+       }
+       document.getElementById('cc').onclick=function(){
+           var a=document.getElementById('num-a').value;
+       	   var b=document.getElementById('num-b').value;
+           var c=document.getElementById('result');
+           var d=document.getElementById("radio-a");
+           var e=document.getElementById("radio-b");
+           if(isNaN(a)||isNaN(b)){
+                console.log("请输入数字");
+       	   }else{
+                if(d.checked){
+                   c.innerHTML=Math.abs(Number(a));
+                }else if(e.checked){
+                   c.innerHTML=Math.abs(Number(b));
+                }
+       	   }
+       }
+       document.getElementById('dd').onclick=function(){
+           var a=document.getElementById('num-a').value;
+       	   var b=document.getElementById('num-b').value;
+           var c=document.getElementById('result');
+           var d=document.getElementById("radio-a");
+           var e=document.getElementById("radio-b");
+           if(isNaN(a)||isNaN(b)){
+                console.log("请输入数字");
+       	   }else{
+                if(d.checked){
+                   c.innerHTML=Math.ceil(Number(a));
+                }else if(e.checked){
+                   c.innerHTML=Math.ceil(Number(b));
+                }
+       	   }
+       }
+       document.getElementById('ee').onclick=function(){
+           var a=document.getElementById('num-a').value;
+       	   var b=document.getElementById('num-b').value;
+           var c=document.getElementById('result');
+           var d=document.getElementById("radio-a");
+           var e=document.getElementById("radio-b");
+           if(isNaN(a)||isNaN(b)){
+                console.log("请输入数字");
+       	   }else{
+                if(d.checked){
+                   c.innerHTML=Math.floor(Number(a));
+                }else if(e.checked){
+                   c.innerHTML=Math.floor(Number(b));
+                }
+       	   }
+       }
+       document.getElementById('ff').onclick=function(){
+           var a=document.getElementById('num-a').value;
+       	   var b=document.getElementById('num-b').value;
+           var c=document.getElementById('result');
+           var d=document.getElementById("radio-a");
+           var e=document.getElementById("radio-b");
+           if(isNaN(a)||isNaN(b)){
+                console.log("请输入数字");
+       	   }else{
+                if(d.checked){
+                   c.innerHTML=Math.round(Number(a));
+                }else if(e.checked){
+                   c.innerHTML=Math.round(Number(b));
+                }
+       	   }
+       }
+       document.getElementById('gg').onclick=function(){
+           var a=document.getElementById('num-a').value;
+       	   var b=document.getElementById('num-b').value;
+       	   var c=document.getElementById('result');
+       	   if(isNaN(a)||isNaN(b)){
+                console.log("请输入数字");
+       	   }else{
+                if(Number(a)<Number(b)){
+                    c.innerHTML=b;
+       	        }else if(Number(b)<Number(a)){
+                    c.innerHTML=a;
+       	        }else{
+       	        	c.innerHTML=a;
+       	        }
+       	   }
+       }
+       document.getElementById('hh').onclick=function(){
+           var a=document.getElementById('num-a').value;
+       	   var b=document.getElementById('num-b').value;
+           var c=document.getElementById('result');
+       	   if(isNaN(a)||isNaN(b)){
+                console.log("请输入数字");
+       	   }else{
+                if(Number(a)<Number(b)){
+                    c.innerHTML=a;
+       	        }else if(Number(b)<Number(a)){
+                    c.innerHTML=b;
+       	        }else{
+       	        	c.innerHTML=a;
+       	        }
+       	   }
+       }
+
+    </script>
+</body>
+</html>

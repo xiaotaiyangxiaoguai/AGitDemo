@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		window.onload=function(){
+			function diyTrim(str) {
+			    var result = "";
+				var tmp=str.split('');//切分数组
+
+				for(var i=0;i<tmp.length;i++){
+					var len1=0;
+					if(tmp[i]!=' '&&tmp[i]!='　'&&tmp[i]!=''){
+						len1=i;
+						break;
+					}
+				}
+				tmp.splice(0,i);
+
+				for(var i=tmp.length;i>0;i--){
+					var len2=0;
+					if(tmp[i-1]!=' '&&tmp[i-1]!='　'&&tmp[i-1]!=''){
+						len2=i;
+						break;
+					}
+				}
+				tmp.splice(i,tmp.length-i);
+
+			    result=tmp.join('');
+			    return result;
+			}
+
+			console.log(diyTrim(' a f b    '));
+			console.log(diyTrim('    ffdaf    '));	   // ->ffdaf
+			console.log(diyTrim('1    ')); 			   // ->1
+			console.log(diyTrim('　　f')); 			   // ->f
+			console.log(diyTrim('  　  a f b 　　 ')); // ->a f b
+			console.log(diyTrim(' '));				   // ->
+			console.log(diyTrim('　')); 			   // ->
+			console.log(diyTrim('')); 				   // ->
+
+
+
+
+		function removeRepetition(str) {
+			    var result = "";
+				var tmp=str.split('');
+				var res=[];
+				res.push(tmp[0]);
+
+				for(var i=0;i<tmp.length;i++){
+					if(i>0){
+						if(tmp[i]!=tmp[i-1]){
+							res.push(tmp[i]);
+						}
+					}	
+				}
+				result=res.join('');
+			    return result;
+			}
+
+			console.log(removeRepetition("aaa")); 		// ->a
+			console.log(removeRepetition("abbba")); 	// ->aba
+			console.log(removeRepetition("aabbaabb"));  // ->abab
+			console.log(removeRepetition("")); 		    // ->
+			console.log(removeRepetition("abc")); 	    // ->abc
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

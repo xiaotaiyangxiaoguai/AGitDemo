@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="fade-obj" style="width:300px;height:300px;background:#000"></div>
+    <button id="fade-btn">淡出</button>
+    <script>
+        var fade_obj = document.getElementById('fade-obj');  
+        var fade_btn= document.getElementById('fade-btn'); 
+        var num = 1; //设置初始透明度
+        var flag = true;   //一个开关
+        var Inter = null;   //定义一个变量
+        fade_btn.addEventListener('click',function () { //添加按钮点击事件
+            t();       // 调用函数 开启定时器
+            fade_btn.disabled = true;  //禁用按键
+            var setTime = setTimeout(function () {  //开启1秒延时
+                clearInterval(Inter);    // 1秒之后关闭定时器
+                flag = !flag;          // 改变开关
+                fade_btn.disabled = false;     // 启用按键
+                if(flag){                  //判断开关改变按键文字
+                    fade_btn.innerHTML = '淡出';
+                    }else{
+                    fade_btn.innerHTML = '淡入';
+                }
+            }, 1000)
+        })
+        function t() {
+            Inter = setInterval(function () {              //定时器
+                flag ? num -= 0.1 : num += 0.1;           
+                //开关为true减少透明 ，开关为flase增加透明度
+                fade_obj.style.opacity = num;               
+                // 改元素透明度
+            }, 100)
+        } 
+    </script>
+</body>
+</html>
