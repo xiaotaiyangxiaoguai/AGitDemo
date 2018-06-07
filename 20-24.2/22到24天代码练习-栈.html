@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		window.onload=function(){
+			var stack = ["apple", "pear"];
+			var oTxt=document.querySelector('#stack-input');
+			var oBtnIn=document.querySelector('#push-btn');
+			var oBtnOut=document.querySelector('#pop-btn');
+			var oBtnFont=document.querySelector('#font-btn');
+			var oBtnEm=document.querySelector('#empty-btn');
+			var oP=document.querySelector('#stack-cont');
+
+			oBtnIn.onclick=function(){
+				stack.push(oTxt.value);
+				oP.innerHTML=stack.join('<-');
+			}
+			oBtnOut.onclick=function(){
+				stack.pop();
+				oP.innerHTML=stack.join('<-');
+			}
+			oBtnFont.onclick=function(){
+				oP.innerHTML=stack+'<br>'+'栈顶元素:'+stack[stack.length-1];
+			}
+			oBtnEm.onclick=function(){
+				if(stack.length==0){
+					oP.innerHTML='栈为空';
+				}else{
+					oP.innerHTML='栈不为空，长度为'+stack.length;
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<input id="stack-input" type="text">
+	<p id="stack-cont">栈内容：apple-&gt;pear</p>    
+	<button id="push-btn">进栈</button>
+	<button id="pop-btn">退栈</button>
+	<button id="font-btn">打印栈顶元素内容</button>
+	<button id="empty-btn">判断栈是否为空</button>
+</body>
+</html>
