@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+    <div id="txt"></div>
+    <div id="txt1"></div>
+	<script>
+	    // <******************这是第一种显示YYYY 年 MM 月 DD 日 星期 D HH:mm:ss**************************>
+	    function nyr(){
+	    	var d=new Date();
+	    	var a;
+	        var year = d.getFullYear();
+	        var month = d.getMonth()+1;//这里获取到的月份要比实际的小一个月，所以要加1
+	        var day = d.getDate();
+	        month=checkTime(month);
+			day=checkTime(day);
+            a=year+"年"+month+"月"+day+"日";
+            return a;
+	    }
+        function startTime()
+		{
+			var b;
+			var today=new Date();
+			var h=today.getHours();
+			var m=today.getMinutes();
+			var s=today.getSeconds();
+		    // add a zero in front of numbers<10
+			m=checkTime(m);
+			s=checkTime(s);
+			b=h+":"+m+":"+s;
+			//t=setTimeout('startTime()',500);
+			return b;
+		}
+		function xingqi(){
+			var c;
+			var today=new Date();
+			var weekday=new Array(7);
+			weekday[0]="星期日";
+			weekday[1]="星期一";
+			weekday[2]="星期二";
+			weekday[3]="星期三";
+			weekday[4]="星期四";
+			weekday[5]="星期五";
+			weekday[6]="星期六";
+			c=weekday[today.getDay()];
+			return c;
+			// console.log(c);
+		}
+		function checkTime(i)
+		{
+			if (i<10) 
+			{
+				i="0" + i;
+		    }
+			return i;
+		}
+		function geshi(){
+            document.getElementById("txt").innerHTML=nyr()+" "+xingqi()+" "+startTime();
+		}
+		geshi();
+	    setInterval(geshi,1000);
+        
+        // <*******************这是第二种显示2008-10-10 Monday 07:10:30 PM**********************>
+	    function nyr1(){
+	    	var d=new Date();
+	    	var a;
+	        var year = d.getFullYear();
+	        var month = d.getMonth()+1;//这里获取到的月份要比实际的小一个月，所以要加1
+	        var day = d.getDate();
+	        month=checkTime(month);
+			day=checkTime(day);
+            a=year+"-"+month+"-"+day;
+            return a;
+	    }
+	    function xingqi1(){
+			var c;
+			var today=new Date();
+			var weekday=new Array(7);
+			weekday[0]="Sunday";
+			weekday[1]="Monday";
+			weekday[2]="Tuesday";
+			weekday[3]="Wednesday";
+			weekday[4]="Thursday";
+			weekday[5]="Friday";
+			weekday[6]="Saturday";
+			c=weekday[today.getDay()];
+			return c;
+		}
+		function startTime1()
+		{
+			var b;
+			var today=new Date();
+			var h=today.getHours();
+			var m=today.getMinutes();
+			var s=today.getSeconds();
+		    // add a zero in front of numbers<10
+			m=checkTime(m);
+			s=checkTime(s);
+			if(h<12){
+				b=h+":"+m+":"+s+"AM";
+			}else{
+                b=h+":"+m+":"+s+" "+"PM";
+			}
+			//t=setTimeout('startTime()',500);
+			return b;
+		}
+		function geshi1(){
+            document.getElementById("txt1").innerHTML=nyr1()+" "+xingqi1()+" "+startTime1();
+		}
+		geshi1();
+	    setInterval(geshi1,1000);
+	</script>
+</body>
+</html>

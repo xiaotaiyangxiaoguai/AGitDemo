@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script> 
+	<script type="text/javascript">
+		$(document).ready(function() {  
+			var aSel=document.getElementsByTagName('select');
+			var Year=document.getElementById('year-select');
+			var Month=document.getElementById('month-select');
+			var Day=document.getElementById('day-select');
+			var Hour=document.getElementById('hour-select');
+			var Minite=document.getElementById('minite-select');
+			var Second=document.getElementById('second-select');
+			var oP=document.getElementById('result-wrapper');
+			var isLeap=0;
+			
+			for(var i=0;i<2;i++){
+				aSel[i].onchange=function(){
+					//判断现在时间与所选时间大小
+					var date1= Year.value+'-'+toDou(Month.value)+'-'+toDou(Day.value)+' '+toDou(Hour.value)+':'+toDou(Minite.value)+':'+toDou(Second.value);  //开始时间  
+				    var date2 = new Date();    //结束时间  
+				    var date3 = date2.getTime() - new Date(date1).getTime();
+				    //console.log(date3);
+				    //console.log(Math.abs(date3));
+				    //根据所选时间显示不同文案
+				    if(date3>=0){
+				    	oP.innerHTML='现在距离 '+Year.value+'年'+toDou(Month.value)+'月'+toDou(Day.value)+'日 '+toDou(Hour.value)+':'+toDou(Minite.value)+':'+toDou(Second.value)+'已经过去'+formatDuring(Math.abs(date3));
+				    }else{
+				    	oP.innerHTML='现在距离 '+Year.value+'年'+toDou(Month.value)+'月'+toDou(Day.value)+'日 '+toDou(Hour.value)+':'+toDou(Minite.value)+':'+toDou(Second.value)+'还有'+formatDuring(Math.abs(date3));
+				    }
+					isLeap=leap(Year.value);
+					//根据所选年份、月份动态生成天数					
+	            	if(Month.value==2){
+	            		if(isLeap==1){
+	            			$("#day-select").empty();
+		            		for(var k = 1; k<=29; k++) {  
+				                $("#day-select").append("<option value='"+k+"'>" + k + "</option>");  
+				            }
+	            		}else{
+	            			$("#day-select").empty();
+		            		for(var k = 1; k<=28; k++) {  
+				                $("#day-select").append("<option value='"+k+"'>" + k + "</option>");  
+				            }
+	            		}		         	
+	            	}else if(Month.value==1||Month.value==3||Month.value==5||Month.value==7||Month.value==8||Month.value==10||Month.value==12){
+	            		$("#day-select").empty();
+	            		for(var k = 1; k<=31; k++) {  
+			                $("#day-select").append("<option value='"+k+"'>" + k + "</option>");  
+			            }
+	            	}else{
+	            		$("#day-select").empty();
+	            		for(var k = 1; k<=30; k++) {  
+			                $("#day-select").append("<option value='"+k+"'>" + k + "</option>");  
+			            }
+	            	}
+
+				}
+			}
+			for(var i=2;i<aSel.length;i++){
+				aSel[i].onchange=function(){
+					//判断现在时间与所选时间大小
+					var date1= Year.value+'-'+toDou(Month.value)+'-'+toDou(Day.value)+' '+toDou(Hour.value)+':'+toDou(Minite.value)+':'+toDou(Second.value);  //开始时间  
+				    var date2 = new Date();    //结束时间  
+				    var date3 = date2.getTime() - new Date(date1).getTime();
+				    //console.log(date3);
+				    //根据所选时间显示不同文案
+					if(date3>=0){
+				    	oP.innerHTML='现在距离 '+Year.value+'年'+toDou(Month.value)+'月'+toDou(Day.value)+'日 '+toDou(Hour.value)+':'+toDou(Minite.value)+':'+toDou(Second.value)+'已经过去'+formatDuring(Math.abs(date3));
+				    }else{
+				    	oP.innerHTML='现在距离 '+Year.value+'年'+toDou(Month.value)+'月'+toDou(Day.value)+'日 '+toDou(Hour.value)+':'+toDou(Minite.value)+':'+toDou(Second.value)+'还有'+formatDuring(Math.abs(date3));
+				    }
+				}
+			}
+            //生成2000-2032年份下拉框  
+            for(var k = 2000; k<=2032; k++) {  
+                $("#year-select").append("<option value='"+k+"'>" + k + "</option>");  
+            }  
+            //生成月份下拉框
+            for(var k = 1; k<=12; k++) {  
+                $("#month-select").append("<option value='"+k+"'>" + k + "</option>");  
+            }  
+            //默认显示天数31天
+            for(var k = 1; k<=31; k++) {  
+                $("#day-select").append("<option value='"+k+"'>" + k + "</option>");  
+            }
+            //生成小时下拉框
+            for(var k = 0; k<=23; k++) {  
+                $("#hour-select").append("<option value='"+k+"'>" + k + "</option>");  
+            }
+            //生成分钟下拉框
+            for(var k = 0; k<=59; k++) {  
+                $("#minite-select").append("<option value='"+k+"'>" + k + "</option>");  
+            }
+            //生成秒钟下拉框
+            for(var k = 0; k<=59; k++) {  
+                $("#second-select").append("<option value='"+k+"'>" + k + "</option>");  
+            }
+            //小于10的数字添加一个0
+            function toDou(n){  
+				if (n<10) {
+					return '0'+n;
+				}else{
+					return ''+n;
+				}
+			}
+            //判断闰年
+            function leap(y){
+            	if(((y%4)==0&&(y%100)!=0)||((y%400)==0)){
+            		return 1;//是闰年
+            	}else{
+            		return -1;//不是闰年
+            	}
+            }
+            //毫秒转化天时分秒
+            function formatDuring(mss) {
+			    var days = parseInt(mss / (1000 * 60 * 60 * 24));
+			    var hours = parseInt((mss % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+			    var minutes = parseInt((mss % (1000 * 60 * 60)) / (1000 * 60));
+			    var seconds = parseInt((mss % (1000 * 60)) / 1000);
+			    return days + " 天 " + hours + " 小时 " + minutes + " 分钟 " + seconds + " 秒 ";
+			}
+            
+        });
+
+	</script>
+</head>
+<body>
+<!-- select#year-select>option[value=$@2000]{$@2000}*33 -->
+	<select name="" id="year-select"></select>
+<!-- select#month-select>option[value=$]{$}*12 -->
+	<select name="" id="month-select"></select>
+	<select name="" id="day-select"></select>
+	<select name="" id="hour-select"></select>
+	<select name="" id="minite-select"></select>
+	<select name="" id="second-select"></select>
+	<p id="result-wrapper">现在距离2000年1月1日 00:00:00已经过去6369 天 21 小时 44 分钟 34 秒</p>
+</body>
+</html>

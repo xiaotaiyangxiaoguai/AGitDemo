@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+       function Go() {
+           console.log("Go");
+        }
+
+       function GoSteps(n) {
+            if(n==true){
+            	Go();
+            }else if(arguments.length==0){
+            	Go();
+            }else if(isNaN(n)){
+                console.log("请输入数字");
+            }else if(n==null){
+                 console.log("请输入数字1");
+            }else if((n==false)&&(typeof(n)=='boolean')){
+                 console.log("请输入数字2");
+            }else{
+                if(n<0){
+                	console.log("不能为负数");
+                }else if((n==0)&&(typeof(n)=='number')){
+                	console.log("不能为0");
+                }else{
+                	var a=Math.floor(n);
+                    while(a--){
+                	   Go();
+                    }
+                }
+            }
+        }
+        // console.log('0:'+typeof(0));
+        // console.log('false:'+typeof(false));
+        GoSteps(10); // Go 10次
+		GoSteps(1); // Go 1次
+		GoSteps(); // Go 1次，认为缺少参数时，默认参数为1
+		GoSteps(0);  // 0次
+		GoSteps(-1);  // 0次
+		GoSteps(1.4);  // Go 1次
+		GoSteps(1.6);  // Go 1次
+		GoSteps(-1);  // 0次
+		GoSteps(true);  // Go 1次
+		GoSteps(false);  // 0次
+		GoSteps("Test");  // 0次
+		GoSteps(NaN);  // 0次
+		GoSteps(null);  // 0次
+	</script>
+</body>
+</html>
